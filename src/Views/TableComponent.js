@@ -20,45 +20,46 @@ const TableComponent = (props) => {
         </tr>
       </thead>
       <tbody>
-        {tableData.map((data) =>  ( <tr>
-          <th scope="row">1</th>
-          <td>{data.project_name}</td>
-          <td>{data.lab_name}</td>
-          <td>{data.lab_location}</td>
-          <td>{data.created_user}</td>
-          <td>{data.requested_user_mail}</td>
-          <td> 
-            <table>
-              <tbody>
-                  {data.routers.map((router,id) => (
+          {tableData.map((data, id) => (
+            <tr key={`${id}-server-data`}>
+              <th scope="row">{id + 1}</th>
+              <td>{data.project_name}</td>
+              <td>{data.lab_name}</td>
+              <td>{data.lab_location}</td>
+              <td>{data.created_user}</td>
+              <td>{data.requested_user_mail}</td>
+              <td>
+                <table>
+                  <tbody>
+                    {data.routers.map((router, id) => (
+                      <tr key={`${id}-router`}>
+                        <td>{router}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </td>
+              <td>
+                <table>
+                  <thead>
                     <tr>
-                      <td key={id}>{router}</td>
-                    </tr> 
-                  ))}
-              </tbody>
-            </table>
-          </td> 
-          <td> 
-            <table>
-              <thead>
-                <tr>
-                  {Object.keys(data.schedule[0]).map((scheduleElement,id)=>(
-                  <th key={id}>{scheduleElement}</th>
-                  ))}
-                </tr> 
-              </thead>
-              <tbody>
-                  {(data.schedule).map((eachSchedule,id) => (
-                   <tr>
-                    <td key={id}>{eachSchedule.script_name}</td>
-                    <td key={id}>{eachSchedule.schedule_date}</td>
-                    <td key={id}>{eachSchedule.schedule_time}</td>
-                    </tr> 
-                  ))}
-              </tbody>
-            </table>
-          </td> 
-        </tr>))}
+                      {Object.keys(data.schedule[0]).map((scheduleElement, id) => (
+                        <th key={`${id}-scheduleElement`}>{scheduleElement}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {(data.schedule).map((eachSchedule, id) => (
+                      <tr key={`${id}-eachSchedule`}>
+                        <td>{eachSchedule.script_name}</td>
+                        <td>{eachSchedule.schedule_date}</td>
+                        <td>{eachSchedule.schedule_time}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </td>
+            </tr>))}
       </tbody>
     </Table>
     </div>

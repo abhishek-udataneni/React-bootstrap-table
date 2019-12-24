@@ -35,7 +35,7 @@ function App(props) {
       <Button color="danger">Get Data</Button>
       </div>
       <div>
-        {JSON.stringify(props.data) !== "{}" && <h2>This is the data from the server</h2>}
+        {JSON.stringify(props.data) !== "{}" && <h2>Data fetched from server using redux-thunk </h2>}
         {JSON.stringify(props.data) !== "{}" && JSON.stringify(props.data)}
       </div>
     </div>
